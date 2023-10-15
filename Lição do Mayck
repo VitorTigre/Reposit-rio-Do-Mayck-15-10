@@ -1,0 +1,127 @@
+1-
+a)
+CREATE TABLE nomes (nome VARCHAR (50));
+
+INSERT INTO nomes (nome) VALUES
+   ('Roberta'),
+   ('Roberto'),
+   ('Maria Clara'),
+   ('João');
+
+b)
+SELECT UPPER(nome) AS nome_upper FROM nomes;
+
+c)
+SELECT nome, LENGHT(nome) AS tamanho_nome FROM nomes;
+
+d)
+SELECT nome,
+  CASE 
+    WHEN nome LIKE '%o' THEN CONCAT('Sr. ', nome)
+    ELSE CONCAT('Sra. ', nome)
+  END AS nome_com_tratamento
+FROM nomes;
+
+2-
+a)
+CREATE TABLE produtos (
+  produto VARCHAR(50),
+  preco DECIMAL(10, 2),
+  quantidade INT
+);
+
+INSERT INTO produtos (produto, preco, quantidade) VALUES
+  ('Produto A', 19.99, 5),
+  ('Produto B', 12.50, 0),
+  ('Produto C', 29.95, -3);
+
+b)
+SELECT produto, ROUND(preco, 2) AS preco_arredondado FROM produtos;
+
+c)
+SELECT produto, ABS(quantidade) AS quantidade_absoluta FROM produtos;
+
+d)
+SELECT AVG(preco) AS media_precos FROM produtos;
+
+3-
+a)
+CREATE TABLE eventos (data_evento DATE);
+
+INSERT INTO eventos (data_evento) VALUES
+  ('2023-10-15'),
+  ('2023-10-20'),
+  ('2023-10-30');
+
+b)
+INSERT INTO eventos (data_evento) VALUES (NOW());
+
+c)
+SELECT
+  data_evento,
+  DATEDIFF(NOW(), data_evento) AS dias_passados
+FROM eventos;
+
+d)
+SELECT
+  data_evento,
+  DAYNAME(data_evento) AS dia_da_semana
+FROM eventos;
+
+4-
+a)
+SELECT
+  data_evento,
+  DAYNAME(data_evento) AS dia_da_semana
+FROM eventos;
+
+b)
+SELECT
+  produto,
+  CASE
+    WHEN preco < 10 THEN 'Barato'
+    WHEN preco >= 10 AND preco <= 20 THEN 'Médio'
+    ELSE 'Caro'
+  END AS categoria_preco
+FROM produtos;
+
+5-
+a)
+def TOTAL_VALOR(preco, quantidade):
+    return preco * quantidade
+
+b)
+SELECT COUNT(*) AS valor_total FROM produtos;
+
+6-
+a)
+SELECT COUNT(*) AS total_produtos FROM produtos;
+
+b)
+SELECT MAX(preco) AS produto_mais_caro FROM produtos;
+
+c)
+SELECT MIN(preco) AS produto_mais_barato FROM produtos;
+
+d)
+SELECT
+  SUM(IF(quantidade > 0, preco * quantidade, 0)) AS valor_total_em_estoque
+FROM produtos;
+
+7-
+a)
+def fatorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * fatorial(n - 1)
+
+b)
+def f_exponencial(base, expoente):
+    return base ** expoente
+
+c)
+def palindromo(palavra):
+    palavra = palavra.lower()
+    return palavra == palavra[::-1]
+
